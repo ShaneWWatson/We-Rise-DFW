@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">We Rise DFW</string>
+    <string name="brand_name">We Rise DFW</string>
+
+    <string name="tab_food">Food</string>
+    <string name="tab_clothing">Clothing</string>
+    <string name="tab_shelter">Shelter</string>
+
+    <string name="search">Search</string>
+    <string name="online_search">Find more online</string>
+    <string name="online_search_progress">Searching OpenStreetMap…</string>
+    <string name="online_search_added">Added %d new providers from OpenStreetMap.</string>
+    <string name="online_search_none">No additional providers found nearby.</string>
+    <string name="online_search_failed">Online search failed. Check your connection and try again.</string>
+    <string name="settings_title">Settings</string>
+
+    <string name="radius_label">Radius (miles)</string>
+    <string name="include_faith_based">Include faith-based services</string>
+    <string name="include_faith_based_summary">When off, services with the cross icon are hidden.</string>
+
+    <string name="permission_required_title">Location needed</string>
+    <string name="permission_required_message">We Rise DFW needs your location only at the moment you tap Search. It is never saved or sent off the device.</string>
+    <string name="grant">Grant</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="out_of_range">OUT OF RANGE — Searches are limited to the Dallas / Fort Worth area.</string>
+    <string name="no_results">No services found in this radius. Try expanding it in Settings.</string>
+    <string name="searching">Searching…</string>
+
+    <string name="open_now">Open now</string>
+    <string name="closed">Closed</string>
+    <string name="faith_based_label">Faith-based</string>
+
+    <string name="call">Call</string>
+    <string name="directions">Directions</string>
+    <string name="visit_website">Visit website</string>
+    <string name="language_label">Language</string>
+    <string name="language_summary">Translates service info into your chosen language. Defaults to English.</string>
+    <string name="translation_unavailable">Translation provider is not configured. Showing original (English).</string>
+    <string name="pref_language_key" translatable="false">pref_language_code</string>
+
+    <string name="footer_brand">© We Rise Technologies</string>
+
+    <string name="privacy_note">Your location is read only when you tap Search and is never stored.</string>
+
+    <!-- Preference keys -->
+    <string name="pref_radius_key" translatable="false">pref_radius_miles</string>
+    <string name="pref_faith_key" translatable="false">pref_include_faith</string>
+    <string name="pref_radius_default" translatable="false">5</string>
+</resources>

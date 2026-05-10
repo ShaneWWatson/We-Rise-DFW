@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SeekBarPreference
+        app:key="@string/pref_radius_key"
+        app:title="@string/radius_label"
+        app:defaultValue="5"
+        app:min="1"
+        android:max="25"
+        app:showSeekBarValue="true" />
+
+    <SwitchPreferenceCompat
+        app:key="@string/pref_faith_key"
+        app:title="@string/include_faith_based"
+        app:summary="@string/include_faith_based_summary"
+        app:defaultValue="true" />
+
+    <!-- Language list is populated programmatically in PreferencesActivity
+         from Languages.kt (140+ entries). -->
+    <ListPreference
+        app:key="@string/pref_language_key"
+        app:title="@string/language_label"
+        app:summary="@string/language_summary"
+        app:defaultValue="en"
+        app:useSimpleSummaryProvider="true" />
+
+</PreferenceScreen>

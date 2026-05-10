@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="near_black">#FF0A0A0A</color>
+    <color name="dark_gray">#FF1A1A1A</color>
+    <color name="mid_gray">#FF2A2A2A</color>
+    <color name="light_gray">#FFB0B0B0</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="brand_red">#FFD32F2F</color>
+    <color name="brand_red_dark">#FF8B0000</color>
+    <color name="brand_red_light">#FFFF6659</color>
+
+    <color name="status_open">#FF2ECC40</color>
+    <color name="status_closed">#FFE74C3C</color>
+
+    <color name="divider">#33FFFFFF</color>
+</resources>

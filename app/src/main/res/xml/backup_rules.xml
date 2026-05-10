@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- The local services cache may be backed up; nothing else. No location data is ever written. -->
+</full-backup-content>

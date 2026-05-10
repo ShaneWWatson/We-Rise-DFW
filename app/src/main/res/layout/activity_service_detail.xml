@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/detailToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/black"
+            app:navigationIcon="@android:drawable/ic_menu_revert"
+            app:titleTextColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+
+            <ImageView
+                android:id="@+id/detailStatusDot"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_dot_open"
+                android:contentDescription="@string/open_now" />
+
+            <TextView
+                android:id="@+id/detailName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                tools:text="DFW Food Pantry" />
+
+            <ImageView
+                android:id="@+id/detailFaithBadge"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_cross"
+                android:visibility="gone"
+                android:contentDescription="@string/faith_based_label" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/detailStatusLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="13sp"
+            android:textColor="@color/brand_red_light"
+            tools:text="Open · Mon–Fri 9–5" />
+
+        <TextView
+            android:id="@+id/detailBlurb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            tools:text="Free hot meals 5pm–7pm; canned goods available 9–4. Walk-ins welcome." />
+
+        <TextView
+            android:id="@+id/detailHoursLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"
+            android:text="HOURS" />
+
+        <TextView
+            android:id="@+id/detailHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            tools:text="Mon–Fri: 9:00–17:00\nSat: 10:00–14:00\nSun: Closed" />
+
+        <TextView
+            android:id="@+id/detailAddressLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"
+            android:text="ADDRESS" />
+
+        <TextView
+            android:id="@+id/detailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="14sp"
+            android:textColor="@color/brand_red_light"
+            android:textStyle="bold"
+            tools:text="123 Main St, Dallas, TX 75201" />
+
+        <Button
+            android:id="@+id/buttonDirections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/directions"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/brand_red"
+            app:icon="@drawable/ic_directions"
+            app:iconTint="@color/white"
+            style="@style/Widget.MaterialComponents.Button" />
+
+        <TextView
+            android:id="@+id/detailPhoneLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"
+            android:text="PHONE" />
+
+        <TextView
+            android:id="@+id/detailPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="14sp"
+            android:textColor="@color/brand_red_light"
+            android:textStyle="bold"
+            tools:text="(214) 555-0100" />
+
+        <Button
+            android:id="@+id/buttonCall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/call"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/brand_red"
+            app:icon="@drawable/ic_phone"
+            app:iconTint="@color/white"
+            style="@style/Widget.MaterialComponents.Button" />
+
+        <TextView
+            android:id="@+id/detailWebsiteLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/light_gray"
+            android:text="WEBSITE" />
+
+        <TextView
+            android:id="@+id/detailWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textSize="14sp"
+            android:textColor="@color/brand_red_light"
+            android:textStyle="bold"
+            android:autoLink="web"
+            android:linksClickable="true"
+            tools:text="https://example.org" />
+
+        <Button
+            android:id="@+id/buttonWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/visit_website"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/brand_red"
+            style="@style/Widget.MaterialComponents.Button" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:textColor="@color/light_gray"
+            android:text="@string/privacy_note" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:textColor="@color/light_gray"
+            android:text="@string/footer_brand" />
+
+    </LinearLayout>
+</ScrollView>
