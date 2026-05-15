@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
+
     <style name="Theme.WeRise" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/brand_red</item>
         <item name="colorPrimaryVariant">@color/brand_red_dark</item>
@@ -12,8 +13,8 @@
         <item name="colorOnSurface">@color/white</item>
 
         <item name="android:windowBackground">@color/black</item>
-        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/black</item>
-        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/black</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:navigationBarColor">@color/black</item>
 
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/light_gray</item>

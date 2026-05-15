@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +82,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="@color/light_gray"
-            android:text="HOURS" />
+            android:text="@string/label_hours" />
 
         <TextView
             android:id="@+id/detailHours"
@@ -100,7 +101,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="@color/light_gray"
-            android:text="ADDRESS" />
+            android:text="@string/label_address" />
 
         <TextView
             android:id="@+id/detailAddress"
@@ -112,7 +113,7 @@
             android:textStyle="bold"
             tools:text="123 Main St, Dallas, TX 75201" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonDirections"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,7 +133,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="@color/light_gray"
-            android:text="PHONE" />
+            android:text="@string/label_phone" />
 
         <TextView
             android:id="@+id/detailPhone"
@@ -144,7 +145,7 @@
             android:textStyle="bold"
             tools:text="(214) 555-0100" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,7 +165,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="@color/light_gray"
-            android:text="WEBSITE" />
+            android:text="@string/label_website" />
 
         <TextView
             android:id="@+id/detailWebsite"
@@ -178,7 +179,7 @@
             android:linksClickable="true"
             tools:text="https://example.org" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonWebsite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -192,7 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:gravity="center"
             android:textColor="@color/light_gray"
             android:text="@string/privacy_note" />
@@ -201,7 +202,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:textSize="11sp"
+            android:textSize="12sp"
             android:gravity="center"
             android:textColor="@color/light_gray"
             android:text="@string/footer_brand" />

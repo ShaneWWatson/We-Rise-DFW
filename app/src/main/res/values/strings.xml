@@ -32,6 +32,11 @@
     <string name="closed">Closed</string>
     <string name="faith_based_label">Faith-based</string>
 
+    <string name="label_hours">HOURS</string>
+    <string name="label_address">ADDRESS</string>
+    <string name="label_phone">PHONE</string>
+    <string name="label_website">WEBSITE</string>
+
     <string name="call">Call</string>
     <string name="directions">Directions</string>
     <string name="visit_website">Visit website</string>
@@ -40,9 +45,10 @@
     <string name="translation_unavailable">Translation provider is not configured. Showing original (English).</string>
     <string name="pref_language_key" translatable="false">pref_language_code</string>
 
-    <string name="footer_brand">© We Rise Technologies</string>
+    <string name="footer_brand">© Shane W Watson</string>
 
     <string name="privacy_note">Your location is read only when you tap Search and is never stored.</string>
+    <string name="radius_instruction">Change search radius in Settings (gear icon)</string>
 
     <!-- Preference keys -->
     <string name="pref_radius_key" translatable="false">pref_radius_miles</string>
