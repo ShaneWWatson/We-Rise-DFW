@@ -45,6 +45,11 @@
     <string name="translation_unavailable">Translation provider is not configured. Showing original (English).</string>
     <string name="pref_language_key" translatable="false">pref_language_code</string>
 
+    <string name="no_location">Could not get location</string>
+    <string name="service_not_found">Service not found</string>
+    <string name="no_phone_app">No phone app installed</string>
+    <string name="no_browser_app">No browser installed</string>
+
     <string name="footer_brand">© Shane W Watson</string>
 
     <string name="privacy_note">Your location is read only when you tap Search and is never stored.</string>

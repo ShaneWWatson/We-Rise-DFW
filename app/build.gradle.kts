@@ -10,8 +10,8 @@ android {
     defaultConfig {
         applicationId = "com.riseup.werisedfw"
         minSdk = 24
-        //noinspection OldTargetApi
-        targetSdk = 36
+        //noinspection NewTargetApi
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -35,16 +35,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.animated.vector.drawable)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.recyclerview)

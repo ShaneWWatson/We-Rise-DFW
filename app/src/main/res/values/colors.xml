@@ -15,4 +15,6 @@
     <color name="status_closed">#FFE74C3C</color>
 
     <color name="divider">#33FFFFFF</color>
+    <color name="radius_bg">#80000000</color>
+    <color name="radius_fill">#15FF0000</color>
 </resources>
