@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Force HTTPS globally -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+
+    <!-- Overpass API specifically -->
+    <domain-config cleartextTrafficPermitted="false">
+        <domain includeSubdomains="true">overpass-api.de</domain>
+    </domain-config>
+</network-security-config>

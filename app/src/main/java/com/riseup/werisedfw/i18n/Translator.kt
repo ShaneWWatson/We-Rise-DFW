@@ -30,14 +30,14 @@ import com.google.mlkit.nl.translate.Translator as MlKitTranslatorClient
  */
 interface Translator {
 
-    /** Translate [text] from English into [targetLangCode]. Returns the original on failure. */
-    suspend fun translate(text: String, targetLangCode: String): String
+	/** Translate [text] from English into [targetLangCode]. Returns the original on failure. */
+	suspend fun translate(text: String, targetLangCode: String): String
 
-    /** Whether translation can actually be performed (e.g. ML Kit available). */
-    fun isConfigured(): Boolean
+	/** Whether translation can actually be performed (e.g. ML Kit available). */
+	fun isConfigured(): Boolean
 
-    /** Release any held resources. Safe to call repeatedly. */
-    fun close() {}
+	/** Release any held resources. Safe to call repeatedly. */
+	fun close() {}
 }
 
 // ---------------------------------------------------------------------------
@@ -55,35 +55,35 @@ interface Translator {
  */
 class MlKitTranslator : Translator {
 
-    private val clients = ConcurrentHashMap<String, MlKitTranslatorClient>()
+	private val clients = ConcurrentHashMap<String, MlKitTranslatorClient>()
 
-    override fun isConfigured(): Boolean = true
+	override fun isConfigured(): Boolean = true
 
-    override suspend fun translate(text: String, targetLangCode: String): String {
-        if (text.isBlank() || targetLangCode.equals("en", ignoreCase = true)) return text
+	override suspend fun translate(text: String, targetLangCode: String): String {
+		if (text.isBlank() || targetLangCode.equals("en", ignoreCase = true)) return text
 
-        val targetTag = TranslateLanguage.fromLanguageTag(targetLangCode) ?: return text
-        val client = clients.getOrPut(targetTag) {
-            val options = TranslatorOptions.Builder()
-                .setSourceLanguage(TranslateLanguage.ENGLISH)
-                .setTargetLanguage(targetTag)
-                .build()
-            Translation.getClient(options)
-        }
+		val targetTag = TranslateLanguage.fromLanguageTag(targetLangCode) ?: return text
+		val client = clients.getOrPut(targetTag) {
+			val options = TranslatorOptions.Builder()
+				.setSourceLanguage(TranslateLanguage.ENGLISH)
+				.setTargetLanguage(targetTag)
+				.build()
+			Translation.getClient(options)
+		}
 
-        return try {
-            // Allow downloads on any network; small models, downloaded once.
-            client.downloadModelIfNeeded(DownloadConditions.Builder().build()).await()
-            client.translate(text).await()
-        } catch (_: Throwable) {
-            text
-        }
-    }
+		return try {
+			// Allow downloads on any network; small models, downloaded once.
+			client.downloadModelIfNeeded(DownloadConditions.Builder().build()).await()
+			client.translate(text).await()
+		} catch (_: Throwable) {
+			text
+		}
+	}
 
-    override fun close() {
-        clients.values.forEach { runCatching { it.close() } }
-        clients.clear()
-    }
+	override fun close() {
+		clients.values.forEach { runCatching { it.close() } }
+		clients.clear()
+	}
 }
 
 // ---------------------------------------------------------------------------
@@ -95,43 +95,43 @@ class MlKitTranslator : Translator {
  * `(language, source-text)` pair only invokes the upstream translator once.
  */
 class CachingTranslator(
-    private val context: Context,
-    private val upstream: Translator
-) {
+	private val context: Context,
+	private val upstream: Translator
+                       ) {
 
-    /** Translate every user-facing field of a [Service] in one go. */
-    suspend fun translateService(service: Service, langCode: String): Service {
-        if (langCode.equals("en", ignoreCase = true) || !upstream.isConfigured()) return service
-        return service.copy(
-            name = translateField(service.name, langCode),
-            address = translateField(service.address, langCode),
-            blurb = translateField(service.blurb, langCode)
-        )
-    }
+	/** Translate every user-facing field of a [Service] in one go. */
+	suspend fun translateService(service: Service, langCode: String): Service {
+		if (langCode.equals("en", ignoreCase = true) || !upstream.isConfigured()) return service
+		return service.copy(
+			name = translateField(service.name, langCode),
+			address = translateField(service.address, langCode),
+			blurb = translateField(service.blurb, langCode)
+		                   )
+	}
 
-    /** Translate a single string, hitting the cache before the upstream provider. */
-    suspend fun translateField(text: String, langCode: String): String {
-        if (text.isBlank() ||
-            langCode.equals("en", ignoreCase = true) ||
-            !upstream.isConfigured()
-        ) return text
+	/** Translate a single string, hitting the cache before the upstream provider. */
+	suspend fun translateField(text: String, langCode: String): String {
+		if (text.isBlank() ||
+		    langCode.equals("en", ignoreCase = true) ||
+		    !upstream.isConfigured()
+		) return text
 
-        val key = cacheKey(langCode, text)
-        val dao = AppDatabase.get(context).translations()
+		val key = cacheKey(langCode, text)
+		val dao = AppDatabase.get(context).translations()
 
-        val cached = withContext(Dispatchers.IO) { dao.get(key) }
-        if (cached != null) return cached
+		val cached = withContext(Dispatchers.IO) { dao.get(key) }
+		if (cached != null) return cached
 
-        val translated = upstream.translate(text, langCode)
-        if (translated != text) {
-            withContext(Dispatchers.IO) {
-                dao.put(TranslationCacheEntry(key, langCode, text.hashCode(), translated))
-            }
-        }
-        return translated
-    }
+		val translated = upstream.translate(text, langCode)
+		if (translated != text) {
+			withContext(Dispatchers.IO) {
+				dao.put(TranslationCacheEntry(key, langCode, text.hashCode(), translated))
+			}
+		}
+		return translated
+	}
 
-    // Removed unused isConfigured()
+	// Removed unused isConfigured()
 }
 
 // ---------------------------------------------------------------------------
@@ -141,14 +141,14 @@ class CachingTranslator(
 /** Process-wide [CachingTranslator] backed by [MlKitTranslator]. */
 object TranslatorFactory {
 
-    @SuppressLint("StaticFieldLeak")
-    @Volatile
-    private var instance: CachingTranslator? = null
+	@SuppressLint("StaticFieldLeak")
+	@Volatile
+	private var instance: CachingTranslator? = null
 
-    fun get(context: Context): CachingTranslator = instance ?: synchronized(this) {
-        instance ?: CachingTranslator(context.applicationContext, MlKitTranslator())
-            .also { instance = it }
-    }
+	fun get(context: Context): CachingTranslator = instance ?: synchronized(this) {
+		instance ?: CachingTranslator(context.applicationContext, MlKitTranslator())
+			.also { instance = it }
+	}
 }
 
 // ---------------------------------------------------------------------------
@@ -160,18 +160,15 @@ object TranslatorFactory {
  * `kotlinx-coroutines-play-services` for a single use.
  */
 private suspend fun <T> Task<T>.await(): T = suspendCancellableCoroutine { cont ->
-    if (isComplete) {
-        val e = exception
-        if (e != null) cont.resumeWithException(e)
-        else if (isCanceled) cont.cancel()
-        else {
-            @Suppress("UNCHECKED_CAST")
-            cont.resume(result as T)
-        }
-        return@suspendCancellableCoroutine
-    }
-    addOnSuccessListener { cont.resume(it) }
-    addOnFailureListener { cont.resumeWithException(it) }
-    addOnCanceledListener { cont.cancel() }
+	addOnCompleteListener { task ->
+		if (task.isSuccessful) {
+			@Suppress("UNCHECKED_CAST")
+			cont.resume(task.result as T)
+		} else if (task.isCanceled) {
+			cont.cancel()
+		} else {
+			cont.resumeWithException(task.exception ?: RuntimeException("Task failed"))
+		}
+	}
 }
 
