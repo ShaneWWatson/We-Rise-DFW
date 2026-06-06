@@ -9,6 +9,12 @@ package com.riseup.werisedfw.data
  */
 object SeedData {
 
+    /**
+     * Returns the complete bundled list of DFW-area service providers.
+     *
+     * This list is static and ships with the APK. Online searches via
+     * [com.riseup.werisedfw.online.OverpassRefresher] can augment it at runtime.
+     */
     fun all(): List<Service> = listOf(
 
         // ---------------- FOOD ----------------

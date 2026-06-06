@@ -33,8 +33,13 @@ object OverpassRefresher {
     private const val REQUEST_TIMEOUT_MS = 20_000
 
     /**
-     * Query Overpass for service POIs near (lat, lon) within [radiusMiles].
-     * Returns an empty list on any error (network failure, timeout, etc.).
+     * Query Overpass for service POIs near ([lat], [lon]) within [radiusMiles].
+     *
+     * @param lat WGS-84 latitude of the search origin.
+     * @param lon WGS-84 longitude of the search origin.
+     * @param radiusMiles Search radius in miles.
+     * @return Matched [Service] entries, or an empty list on any error
+     *   (network failure, timeout, parse error, etc.).
      */
     suspend fun search(
         lat: Double,
@@ -77,6 +82,10 @@ object OverpassRefresher {
     // Networking
     // -----------------------------------------------------------------------
 
+    /**
+     * POSTs [query] to the Overpass endpoint and returns the raw response body,
+     * or `null` on any network or HTTP error.
+     */
     private fun postOverpass(query: String): String? {
         val url = URI(OVERPASS_ENDPOINT).toURL()
         val conn = (url.openConnection() as HttpURLConnection).apply {
@@ -128,6 +137,10 @@ object OverpassRefresher {
         return out
     }
 
+    /**
+     * Converts a single Overpass element object into a [Service], or returns
+     * `null` if the element lacks the required fields (id, coordinates, category).
+     */
     private fun elementToService(el: JSONObject): Service? {
         val id = el.optLong("id", -1L).takeIf { it >= 0 } ?: return null
         val lat = el.optDouble("lat", Double.NaN).takeIf { !it.isNaN() } ?: return null
@@ -173,6 +186,7 @@ object OverpassRefresher {
         }
     }
 
+    /** Assembles a human-readable address string from OSM `addr:*` tags. */
     private fun composeAddress(tags: JSONObject): String {
         val parts = listOf(
             tags.optString("addr:housenumber"),
@@ -211,6 +225,10 @@ object OverpassRefresher {
         }
     }
 
+    /**
+     * Heuristically determines whether a provider is faith-based by checking the
+     * `religion` tag and looking for religious keywords in `operator` and `name`.
+     */
     private fun looksFaithBased(tags: JSONObject): Boolean {
         val religion = tags.optString("religion")
         val operator = tags.optString("operator").lowercase()
@@ -224,6 +242,7 @@ object OverpassRefresher {
         return religiousTokens.any { it in operator || it in name }
     }
 
+    /** Returns the OSM `description` tag, or a generic fallback blurb for the given [category]. */
     private fun buildBlurb(tags: JSONObject, category: Category): String {
         val description = tags.optString("description")
         if (description.isNotBlank()) return description
@@ -243,9 +262,15 @@ object OverpassRefresher {
     )
 
     /**
-     * Convert a (lat, lon) + radius (miles) into a bounding box. Uses a
-     * reasonable approximation: 1° latitude ≈ 69 miles, longitude scaled by
-     * cos(lat). Good enough for a 25-mile-or-less search.
+     * Converts a centre point and radius into a [BoundingBox].
+     *
+     * Uses a flat-earth approximation: 1° latitude ≈ 69 miles, longitude scaled
+     * by cos(lat). Accurate enough for searches up to ~25 miles.
+     *
+     * @param lat WGS-84 latitude of the centre point.
+     * @param lon WGS-84 longitude of the centre point.
+     * @param radiusMiles Desired radius in miles.
+     * @return A [BoundingBox] that fully encloses the circle.
      */
     private fun boundingBox(lat: Double, lon: Double, radiusMiles: Int): BoundingBox {
         val deltaLat = radiusMiles / 69.0

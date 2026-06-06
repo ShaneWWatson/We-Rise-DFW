@@ -145,6 +145,11 @@ object TranslatorFactory {
 	@Volatile
 	private var instance: CachingTranslator? = null
 
+	/**
+	 * Returns the singleton [CachingTranslator], creating it on first call.
+	 *
+	 * @param context Any [Context]; the application context is used internally.
+	 */
 	fun get(context: Context): CachingTranslator = instance ?: synchronized(this) {
 		instance ?: CachingTranslator(context.applicationContext, MlKitTranslator())
 			.also { instance = it }

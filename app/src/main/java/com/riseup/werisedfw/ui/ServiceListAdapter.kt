@@ -32,6 +32,7 @@ class ServiceListAdapter(
         holder.bind(service, miles, onClick)
     }
 
+    /** Identity and content comparison for [DiffUtil] change animation. */
     private class DiffCallback : DiffUtil.ItemCallback<Pair<Service, Double>>() {
         override fun areItemsTheSame(
             oldItem: Pair<Service, Double>,
@@ -54,6 +55,13 @@ class ServiceListAdapter(
         private val statusDot: ImageView = itemView.findViewById(R.id.statusDot)
         private val faithBadge: ImageView = itemView.findViewById(R.id.faithBadge)
 
+        /**
+         * Populates this card with [service] data.
+         *
+         * @param service The provider to display.
+         * @param miles Pre-computed distance from the user to this provider.
+         * @param onClick Callback invoked when the user taps the card.
+         */
         fun bind(service: Service, miles: Double, onClick: (Service) -> Unit) {
             name.text = service.name
             address.text = service.address

@@ -30,6 +30,7 @@ class ServicePagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(act
     }
 
     private companion object {
+        /** Fixed order of categories matching the tab positions 0, 1, 2. */
         val TAB_ORDER = listOf(Category.FOOD, Category.CLOTHING, Category.SHELTER)
     }
 }

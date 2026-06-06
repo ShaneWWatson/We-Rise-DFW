@@ -17,6 +17,7 @@ data class Language(val code: String, val displayName: String)
  */
 object Languages {
 
+    /** Every supported language, with English (`en`) first. */
     val all: List<Language> = listOf(
         Language("en", "English"),
         Language("af", "Afrikaans"),

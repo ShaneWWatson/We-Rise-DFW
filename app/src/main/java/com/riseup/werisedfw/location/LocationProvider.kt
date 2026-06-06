@@ -34,7 +34,12 @@ object LocationProvider {
     /** Hard cap on how long we'll wait for a single update before giving up. */
     private const val SINGLE_UPDATE_TIMEOUT_MS = 15_000L
 
-    /** Returns true if either coarse or fine location permission has been granted. */
+    /**
+     * Returns `true` if either `ACCESS_FINE_LOCATION` or `ACCESS_COARSE_LOCATION`
+     * has been granted.
+     *
+     * @param context Any [Context] used to check permission state.
+     */
     fun hasPermission(context: Context): Boolean {
         val fine = ContextCompat.checkSelfPermission(
             context,
@@ -50,6 +55,11 @@ object LocationProvider {
     /**
      * Returns the user's current location, or `null` if permission is missing,
      * no provider is enabled, or no fix arrives within the timeout.
+     *
+     * The returned [Location] is held only by the caller; this class never
+     * persists location data.
+     *
+     * @param context Any [Context] with location services available.
      */
     @SuppressLint("MissingPermission")
     suspend fun fetchOnce(context: Context): Location? {
@@ -65,24 +75,36 @@ object LocationProvider {
     // Internals
     // -------------------------------------------------------------------
 
+    /** Provider names in descending precision order. */
     private val PROVIDER_PRIORITY = listOf(
         LocationManager.GPS_PROVIDER,
         LocationManager.NETWORK_PROVIDER,
         LocationManager.PASSIVE_PROVIDER,
     )
 
+    /** Returns the subset of [PROVIDER_PRIORITY] providers currently enabled on [lm]. */
     private fun enabledProviders(lm: LocationManager): List<String> =
         PROVIDER_PRIORITY.filter { lm.isProviderEnabled(it) }
 
+    /**
+     * Returns the most recently cached fix from any of [providers] that is still
+     * fresh enough (within [ACCEPTABLE_AGE_MS]), preferring the fix with the
+     * smallest accuracy radius (most precise). Returns `null` if no acceptable
+     * cached fix exists.
+     */
     @SuppressLint("MissingPermission")
     private fun mostRecentCachedFix(lm: LocationManager, providers: List<String>): Location? {
         val now = System.currentTimeMillis()
         return providers.asSequence()
             .mapNotNull { runCatching { lm.getLastKnownLocation(it) }.getOrNull() }
             .filter { it.time > 0 && (now - it.time) < ACCEPTABLE_AGE_MS }
-            .maxByOrNull { fix -> if (fix.accuracy <= 0f) Float.MAX_VALUE else fix.accuracy }
+            .minByOrNull { fix -> if (fix.accuracy <= 0f) Float.MAX_VALUE else fix.accuracy }
     }
 
+    /**
+     * Requests a single location update from the first available provider,
+     * waiting at most [SINGLE_UPDATE_TIMEOUT_MS] before returning `null`.
+     */
     @SuppressLint("MissingPermission")
     private suspend fun requestSingleFix(
         lm: LocationManager,

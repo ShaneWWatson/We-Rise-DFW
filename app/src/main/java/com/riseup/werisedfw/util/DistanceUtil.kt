@@ -10,7 +10,15 @@ object DistanceUtil {
 
 	private const val EARTH_RADIUS_MILES = 3958.8
 
-	/** Returns the straight-line distance in miles between two `(lat, lon)` pairs. */
+	/**
+	 * Returns the great-circle distance in miles between two WGS-84 coordinates.
+	 *
+	 * @param lat1 Latitude of the first point in decimal degrees.
+	 * @param lon1 Longitude of the first point in decimal degrees.
+	 * @param lat2 Latitude of the second point in decimal degrees.
+	 * @param lon2 Longitude of the second point in decimal degrees.
+	 * @return Distance in miles.
+	 */
 	fun milesBetween(
 		lat1: Double, lon1: Double,
 		lat2: Double, lon2: Double,

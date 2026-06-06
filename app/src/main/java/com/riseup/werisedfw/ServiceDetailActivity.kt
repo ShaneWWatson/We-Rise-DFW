@@ -50,6 +50,12 @@ class ServiceDetailActivity : AppCompatActivity() {
     // Data loading + translation
     // -------------------------------------------------------------------
 
+    /**
+     * Loads the [Service] with [id] from the local database, optionally
+     * translates its fields, then calls [bind].
+     *
+     * @param id The service identifier passed via [EXTRA_SERVICE_ID].
+     */
     private suspend fun loadAndBind(id: String) {
         val raw = withContext(Dispatchers.IO) {
             AppDatabase.get(this@ServiceDetailActivity).services()
@@ -72,6 +78,7 @@ class ServiceDetailActivity : AppCompatActivity() {
     // View binding
     // -------------------------------------------------------------------
 
+    /** Populates all view groups with data from [service]. */
     private fun bind(service: Service) {
         bindHeader(service)
         bindDescription(service)
@@ -155,10 +162,22 @@ class ServiceDetailActivity : AppCompatActivity() {
 
     /** Open the user's default browser to the provider's website. */
     private fun openUrl(url: String) {
-        val normalized = if (url.startsWith("http://") || url.startsWith("https://")) url
-        else "https://$url"
+        // Normalise the scheme using a case-insensitive check so that URLs like
+        // "HTTPS://example.com" are not incorrectly double-prefixed.
+        val uri = url.toUri()
+        val safe = when (uri.scheme?.lowercase()) {
+            "http", "https" -> uri
+            else -> "https://$url".toUri()
+        }
+        // Final guard: only fire the intent if the resolved scheme is a web scheme.
+        // This prevents non-http(s) URIs that could originate from untrusted OSM data
+        // from being dispatched to arbitrary app handlers.
+        if (safe.scheme?.lowercase() !in setOf("http", "https")) {
+            Toast.makeText(this, R.string.no_browser_app, Toast.LENGTH_SHORT).show()
+            return
+        }
         try {
-            startActivity(Intent(Intent.ACTION_VIEW, normalized.toUri()))
+            startActivity(Intent(Intent.ACTION_VIEW, safe))
         } catch (_: ActivityNotFoundException) {
             Toast.makeText(this, R.string.no_browser_app, Toast.LENGTH_SHORT).show()
         }
@@ -176,6 +195,7 @@ class ServiceDetailActivity : AppCompatActivity() {
     }
 
     companion object {
+        /** Intent extra key for the service ID string. */
         const val EXTRA_SERVICE_ID = "service_id"
     }
 }

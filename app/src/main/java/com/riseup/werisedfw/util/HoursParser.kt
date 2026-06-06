@@ -22,7 +22,12 @@ object HoursParser {
 
     private val DAYS = listOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
 
-    /** Returns true if the schedule says the provider is open at [calendar]'s wall-clock time. */
+    /**
+     * Returns `true` if the schedule says the provider is open at [calendar]'s wall-clock time.
+     *
+     * @param hoursString Encoded schedule in the app's hours format.
+     * @param calendar The point in time to check against; defaults to now.
+     */
     fun isOpenAt(hoursString: String, calendar: Calendar = Calendar.getInstance()): Boolean {
         if (hoursString.isBlank()) return false
         val dayKey = DAYS[calendar[Calendar.DAY_OF_WEEK] - 1]
@@ -37,7 +42,12 @@ object HoursParser {
         return false
     }
 
-    /** Multi-line, human-readable schedule for the detail screen. */
+    /**
+     * Formats [hoursString] as a multi-line, human-readable schedule.
+     *
+     * @param hoursString Encoded schedule in the app's hours format.
+     * @return A newline-separated string with one line per day of the week.
+     */
     fun pretty(hoursString: String): String {
         val byDay = mutableMapOf<String, MutableList<String>>()
         for (token in tokenize(hoursString)) {
@@ -64,18 +74,28 @@ object HoursParser {
         "THU" to "Thu", "FRI" to "Fri", "SAT" to "Sat", "SUN" to "Sun",
     )
 
+    /** Splits [hoursString] on `;` and trims whitespace, discarding empty tokens. */
     private fun tokenize(hoursString: String): List<String> =
         hoursString.split(";").asSequence().map { it.trim() }.filter { it.isNotEmpty() }.toList()
 
+    /**
+     * Splits a single token (e.g. `"MON 09:00-17:00"`) into its day key and
+     * time-range string. Returns `null` if the token is malformed.
+     */
     private fun splitDayAndRanges(token: String): Pair<String, String>? {
         val parts = token.split(" ", limit = 2)
         if (parts.size < 2) return null
         return parts[0].uppercase() to parts[1].trim()
     }
 
+    /** Returns `true` if [key] is either `"ALL"` or exactly matches [today]. */
     private fun appliesToDay(key: String, today: String): Boolean =
         key == "ALL" || key == today
 
+    /**
+     * Returns `true` if [nowMinutes] (minutes since midnight) falls within any
+     * of the comma-separated time ranges in [ranges].
+     */
     private fun anyRangeContains(ranges: String, nowMinutes: Int): Boolean =
         ranges.split(",").any { range ->
             val r = range.trim()

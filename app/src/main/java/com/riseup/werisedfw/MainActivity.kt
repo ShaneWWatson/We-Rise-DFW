@@ -210,6 +210,7 @@ class MainActivity : AppCompatActivity() {
 		lifecycleScope.launch { doSearch(useLastLocation = false) }
 	}
 
+	/** Shows a rationale dialog and then requests location permissions via [permissionLauncher]. */
 	private fun promptForLocationPermission() {
 		AlertDialog.Builder(this)
 			.setTitle(R.string.permission_required_title)
@@ -292,6 +293,7 @@ class MainActivity : AppCompatActivity() {
 		resetSearchButton()
 	}
 
+	/** Re-enables the Search button and resets its label after a search completes. */
 	private fun resetSearchButton() {
 		searchButton.isEnabled = true
 		searchButton.text = getString(R.string.search)
@@ -352,6 +354,7 @@ class MainActivity : AppCompatActivity() {
 		}
 	}
 
+	/** Re-enables the "Find more online" button and resets its label. */
 	private fun resetOnlineSearchButton() {
 		onlineSearchButton.isEnabled = true
 		onlineSearchButton.text = getString(R.string.online_search)
@@ -414,6 +417,7 @@ class MainActivity : AppCompatActivity() {
 		mapView.invalidate()
 	}
 
+	/** Creates an OSMDroid [Marker] for [svc] with an open/closed icon and an info window. */
 	private fun buildMarker(svc: Service): Marker {
 		val isOpen = HoursParser.isOpenAt(svc.hours)
 		val iconRes = if (isOpen) R.drawable.ic_dot_open else R.drawable.ic_dot_closed
@@ -450,12 +454,14 @@ class MainActivity : AppCompatActivity() {
 	// Helpers
 	// -------------------------------------------------------------------
 
+	/** Maps a tab [position] (0 = Food, 1 = Clothing, 2 = Shelter) to its [Category]. */
 	private fun positionToCategory(position: Int): Category = when (position) {
 		0 -> Category.FOOD
 		1 -> Category.CLOTHING
 		else -> Category.SHELTER
 	}
 
+	/** Shows a short [Toast] with [message] on the main thread. */
 	private fun showToast(message: String) {
 		Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 	}

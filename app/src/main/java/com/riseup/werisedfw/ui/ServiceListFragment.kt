@@ -12,6 +12,7 @@ import com.riseup.werisedfw.R
 import com.riseup.werisedfw.ServiceDetailActivity
 import com.riseup.werisedfw.data.Category
 import com.riseup.werisedfw.data.Service
+import kotlin.jvm.java
 
 /**
  * One tab's worth of provider list. Renders a [RecyclerView] with cards or
@@ -33,6 +34,7 @@ class ServiceListFragment : Fragment() {
     ): View = inflater.inflate(R.layout.fragment_service_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         recyclerView = view.findViewById(R.id.recyclerView)
         emptyState = view.findViewById(R.id.emptyState)
         adapter = ServiceListAdapter(::openDetail)
@@ -51,12 +53,14 @@ class ServiceListFragment : Fragment() {
     // Internals
     // -------------------------------------------------------------------
 
+    /** Submits [items] to the adapter and toggles empty-state visibility. */
     private fun applyItems(items: List<Pair<Service, Double>>) {
         adapter.submitList(items)
         emptyState.visibility = if (items.isEmpty()) View.VISIBLE else View.GONE
         recyclerView.visibility = if (items.isEmpty()) View.GONE else View.VISIBLE
     }
 
+    /** Launches [ServiceDetailActivity] for the given [service]. */
     private fun openDetail(service: Service) {
         val intent = Intent(requireContext(), ServiceDetailActivity::class.java)
             .putExtra(ServiceDetailActivity.EXTRA_SERVICE_ID, service.id)
@@ -66,9 +70,14 @@ class ServiceListFragment : Fragment() {
     companion object {
         private const val ARG_CATEGORY = "category"
 
+        /**
+         * Creates a new [ServiceListFragment] pre-configured for [category].
+         *
+         * @param category The service category this fragment should display.
+         */
         fun newInstance(category: Category): ServiceListFragment =
             ServiceListFragment().apply {
-                arguments = Bundle().apply { putString(ARG_CATEGORY, category.name) }
+                arguments = Bundle().apply { putString(ARG_CATEGORY, category.id) }
             }
     }
 }
