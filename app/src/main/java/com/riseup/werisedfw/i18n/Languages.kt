@@ -5,6 +5,9 @@ package com.riseup.werisedfw.i18n
  * translation. Codes are BCP-47 / ISO 639-1 and match ML Kit's supported set.
  *
  * English (`en`) is index 0 and represents "no translation".
+ *
+ * @property code BCP-47 / ISO 639-1 language code (e.g. `"es"`).
+ * @property displayName Human-readable language name shown in the Settings picker.
  */
 data class Language(val code: String, val displayName: String)
 

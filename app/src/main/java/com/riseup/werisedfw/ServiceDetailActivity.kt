@@ -87,6 +87,7 @@ class ServiceDetailActivity : AppCompatActivity() {
         bindWebsiteBlock(service)
     }
 
+    /** Renders the name, open/closed status, and faith-based badge. */
     private fun bindHeader(service: Service) {
         findViewById<TextView>(R.id.detailName).text = service.name
 
@@ -101,11 +102,13 @@ class ServiceDetailActivity : AppCompatActivity() {
             if (service.faithBased) View.VISIBLE else View.GONE
     }
 
+    /** Renders the blurb and the formatted weekly hours. */
     private fun bindDescription(service: Service) {
         findViewById<TextView>(R.id.detailBlurb).text = service.blurb
         findViewById<TextView>(R.id.detailHours).text = HoursParser.pretty(service.hours)
     }
 
+    /** Renders the address and wires the Directions actions to [openMap]. */
     private fun bindAddressBlock(service: Service) {
         val addressView = findViewById<TextView>(R.id.detailAddress)
         addressView.text = service.address
@@ -113,6 +116,7 @@ class ServiceDetailActivity : AppCompatActivity() {
         findViewById<MaterialButton>(R.id.buttonDirections).setOnClickListener { openMap(service) }
     }
 
+    /** Renders the phone row, or hides it when no number is listed. */
     private fun bindPhoneBlock(service: Service) {
         val phoneView = findViewById<TextView>(R.id.detailPhone)
         val callButton = findViewById<MaterialButton>(R.id.buttonCall)
@@ -129,6 +133,7 @@ class ServiceDetailActivity : AppCompatActivity() {
         callButton.setOnClickListener { dial(service.phone) }
     }
 
+    /** Renders the website row, or hides it when no URL is listed. */
     private fun bindWebsiteBlock(service: Service) {
         val websiteView = findViewById<TextView>(R.id.detailWebsite)
         val websiteLabel = findViewById<TextView>(R.id.detailWebsiteLabel)

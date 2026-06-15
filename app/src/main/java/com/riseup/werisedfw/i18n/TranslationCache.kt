@@ -11,6 +11,11 @@ import androidx.room.Query
  * Persisted translation row. The [cacheKey] is `"<langCode>:<source>"`,
  * uniquely identifying a `(language, source-text)` pair without risk of
  * hash collisions. [sourceHash] is retained as a diagnostic field only.
+ *
+ * @property cacheKey Composite primary key produced by [cacheKey].
+ * @property langCode BCP-47 target language code.
+ * @property sourceHash `hashCode()` of the source text; diagnostic only.
+ * @property translated The cached translated string.
  */
 @Entity(tableName = "translations")
 data class TranslationCacheEntry(
