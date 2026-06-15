@@ -23,7 +23,6 @@
 
     <!-- Map (top half of the screen) -->
     <FrameLayout
-        android:id="@+id/mapContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/dark_gray"

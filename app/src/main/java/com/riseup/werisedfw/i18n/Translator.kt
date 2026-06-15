@@ -130,8 +130,6 @@ class CachingTranslator(
 		}
 		return translated
 	}
-
-	// Removed unused isConfigured()
 }
 
 // ---------------------------------------------------------------------------

@@ -3,7 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="near_black">#FF0A0A0A</color>
     <color name="dark_gray">#FF1A1A1A</color>
-    <color name="mid_gray">#FF2A2A2A</color>
     <color name="light_gray">#FFB0B0B0</color>
     <color name="white">#FFFFFFFF</color>
 
@@ -14,7 +13,6 @@
     <color name="status_open">#FF2ECC40</color>
     <color name="status_closed">#FFE74C3C</color>
 
-    <color name="divider">#33FFFFFF</color>
     <color name="radius_bg">#80000000</color>
     <color name="radius_fill">#15FF0000</color>
 </resources>

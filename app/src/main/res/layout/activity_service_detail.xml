@@ -76,7 +76,6 @@
             tools:text="Free hot meals 5pm–7pm; canned goods available 9–4. Walk-ins welcome." />
 
         <TextView
-            android:id="@+id/detailHoursLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -95,7 +94,6 @@
             tools:text="Mon–Fri: 9:00–17:00\nSat: 10:00–14:00\nSun: Closed" />
 
         <TextView
-            android:id="@+id/detailAddressLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

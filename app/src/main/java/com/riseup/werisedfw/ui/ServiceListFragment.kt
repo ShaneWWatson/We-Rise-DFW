@@ -12,7 +12,6 @@ import com.riseup.werisedfw.R
 import com.riseup.werisedfw.ServiceDetailActivity
 import com.riseup.werisedfw.data.Category
 import com.riseup.werisedfw.data.Service
-import kotlin.jvm.java
 
 /**
  * One tab's worth of provider list. Renders a [RecyclerView] with cards or

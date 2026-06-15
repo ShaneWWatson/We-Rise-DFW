@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">We Rise DFW</string>
-    <string name="brand_name">We Rise DFW</string>
 
     <string name="tab_food">Food</string>
     <string name="tab_clothing">Clothing</string>
@@ -42,7 +41,6 @@
     <string name="visit_website">Visit website</string>
     <string name="language_label">Language</string>
     <string name="language_summary">Translates service info into your chosen language. Defaults to English.</string>
-    <string name="translation_unavailable">Translation provider is not configured. Showing original (English).</string>
     <string name="pref_language_key" translatable="false">pref_language_code</string>
 
     <string name="no_location">Could not get location</string>
@@ -58,5 +56,4 @@
     <!-- Preference keys -->
     <string name="pref_radius_key" translatable="false">pref_radius_miles</string>
     <string name="pref_faith_key" translatable="false">pref_include_faith</string>
-    <string name="pref_radius_default" translatable="false">5</string>
 </resources>
