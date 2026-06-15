@@ -76,7 +76,7 @@ class ServiceListFragment : Fragment() {
          */
         fun newInstance(category: Category): ServiceListFragment =
             ServiceListFragment().apply {
-                arguments = Bundle().apply { putString(ARG_CATEGORY, category.id) }
+                arguments = Bundle().apply { putString(ARG_CATEGORY, category.name) }
             }
     }
 }
