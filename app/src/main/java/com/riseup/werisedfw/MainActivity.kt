@@ -10,10 +10,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
@@ -121,10 +125,22 @@ class MainActivity : AppCompatActivity() {
 	// -------------------------------------------------------------------
 
 	override fun onCreate(savedInstanceState: Bundle?) {
+		enableEdgeToEdge()
 		prefs = PreferenceManager.getDefaultSharedPreferences(this)
 		Configuration.getInstance().load(this, prefs)
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
+
+		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+			val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+			v.updatePadding(
+				left = systemBars.left,
+				top = systemBars.top,
+				right = systemBars.right,
+				bottom = systemBars.bottom
+			               )
+			insets
+		}
 
 		prefs.registerOnSharedPreferenceChangeListener(prefsListener)
 

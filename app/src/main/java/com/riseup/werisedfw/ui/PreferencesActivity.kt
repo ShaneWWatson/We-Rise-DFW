@@ -1,7 +1,11 @@
 package com.riseup.werisedfw.ui
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.appbar.MaterialToolbar
@@ -19,8 +23,20 @@ import com.riseup.werisedfw.i18n.Languages
 class PreferencesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+	    enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_preferences)
+
+	    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.prefRoot)) { v, insets ->
+		    val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+		    v.updatePadding(
+			    left = systemBars.left,
+			    top = systemBars.top,
+			    right = systemBars.right,
+			    bottom = systemBars.bottom
+		                   )
+		    insets
+	    }
 
         findViewById<MaterialToolbar>(R.id.prefToolbar).apply {
             setNavigationIcon(android.R.drawable.ic_menu_revert)

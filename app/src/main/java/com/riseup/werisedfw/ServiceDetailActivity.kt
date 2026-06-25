@@ -8,12 +8,17 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.PreferenceManager
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
+import com.riseup.werisedfw.ServiceDetailActivity.Companion.EXTRA_SERVICE_ID
 import com.riseup.werisedfw.data.AppDatabase
 import com.riseup.werisedfw.data.Service
 import com.riseup.werisedfw.i18n.TranslatorFactory
@@ -32,8 +37,20 @@ import kotlinx.coroutines.withContext
 class ServiceDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_service_detail)
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.detailRoot)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.updatePadding(
+                left = systemBars.left,
+                top = systemBars.top,
+                right = systemBars.right,
+                bottom = systemBars.bottom
+                           )
+            insets
+        }
 
         findViewById<MaterialToolbar>(R.id.detailToolbar)
             .setNavigationOnClickListener { finish() }

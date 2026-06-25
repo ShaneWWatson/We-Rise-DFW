@@ -134,6 +134,12 @@ That's it. No location data is ever written to the phone's storage.
 
 ## Common situations & fixes
 
+**Compatible Phones**
+
+- Works on any phone running **Android 7.0 (Nougat)** or newer.
+- Fully supports the latest features of **Android 17**, including predictive back gestures and
+  edge-to-edge display.
+
 **"Could not get location"**
 - Make sure Location is turned on in your phone's quick-settings panel.
 - Make sure the app has location permission. Open your phone's **Settings → Apps → We Rise → Permissions → Location**, and pick **Allow only while using the app**.

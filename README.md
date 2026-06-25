@@ -47,7 +47,7 @@ Rise is meant to be a quick, low-friction way to see what's around them right no
 
 - Kotlin · AndroidX · classic XML views (intentionally — keeps the binary small and the code
   accessible)
-- Min SDK 24 (Android 7.0) · Target SDK 34
+- Min SDK 24 (Android 7.0) · Target SDK 37 (Android 17)
 - [OSMDroid](https://github.com/osmdroid/osmdroid) — map rendering, no API key
 - [Room](https://developer.android.com/training/data-storage/room) — local cache database
 - Platform `LocationManager` — one-shot location, no Google Play Services dependency for this code
@@ -97,7 +97,7 @@ app/src/main/java/com.riseup.werisedfw/
    `gradle-wrapper.jar` is missing, run **File → Sync Project with Gradle Files**, or in a terminal
    at the project root run `gradle wrapper` once.
 3. Let Gradle sync. The first sync downloads dependencies; this takes a few minutes.
-4. Run on a device or emulator (API 24+).
+4. Run on a device or emulator (Android 7.0+ / API 24+). Optimized for Android 17.
 
 ## Adding more providers to the bundled list
 

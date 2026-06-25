@@ -42,7 +42,7 @@ Rise DFW 的目标是提供一种快速、低门槛的方式，让他们立刻�
 ## 技术栈
 
 - Kotlin · AndroidX · 经典 XML 视图（刻意保留——可保持安装包小、代码易读）
-- 最低 SDK 24（Android 7.0）· 目标 SDK 34
+- 最低 SDK 24（Android 7.0）· 目标 SDK 37 (Android 17)
 - [OSMDroid](https://github.com/osmdroid/osmdroid) —— 地图渲染，无需 API 密钥
 - [Room](https://developer.android.com/training/data-storage/room) —— 本地缓存数据库
 - 平台 `LocationManager` —— 单次定位读取，本路径不依赖 Google Play Services
@@ -57,7 +57,7 @@ Rise DFW 的目标是提供一种快速、低门槛的方式，让他们立刻�
    `gradle-wrapper.jar`，请运行 **File → Sync Project with Gradle Files**，或在项目根目录的终端中运行一次
    `gradle wrapper`。
 3. 让 Gradle 完成同步。首次同步会下载依赖项，可能耗时几分钟。
-4. 在 API 24 及以上的设备或模拟器上运行。
+4. 在 Android 7.0 (API 24) 及以上的设备或模拟器上运行。已针对 Android 17 进行优化。
 
 ## 向内置列表添加更多服务
 

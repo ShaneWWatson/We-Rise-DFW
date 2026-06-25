@@ -10,7 +10,6 @@ android {
 	defaultConfig {
 		applicationId = "com.riseup.werisedfw"
 		minSdk = 24
-		//noinspection NewTargetApi
 		targetSdk = 37
 		versionCode = 3
 		versionName = "1.3"
@@ -39,6 +38,7 @@ android {
 
 dependencies {
 	implementation(libs.androidx.core.ktx)
+	implementation(libs.androidx.activity.ktx)
 	implementation(libs.androidx.appcompat)
 	implementation(libs.material)
 	implementation(libs.androidx.constraintlayout)

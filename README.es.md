@@ -54,7 +54,7 @@ fricción de ver qué hay cerca de ellas en este momento.
 
 - Kotlin · AndroidX · vistas XML clásicas (intencional — mantiene el binario pequeño y el código
   accesible)
-- Min SDK 24 (Android 7.0) · Target SDK 34
+- Min SDK 24 (Android 7.0) · Target SDK 37 (Android 17)
 - [OSMDroid](https://github.com/osmdroid/osmdroid) — renderizado del mapa, sin clave API
 - [Room](https://developer.android.com/training/data-storage/room) — base de datos de caché local
 - `LocationManager` de la plataforma — ubicación de un solo uso, sin dependencia de Google Play
@@ -73,7 +73,7 @@ fricción de ver qué hay cerca de ellas en este momento.
    raíz del proyecto ejecuta `gradle wrapper` una vez.
 3. Deja que Gradle sincronice. La primera sincronización descarga las dependencias; tarda unos
    minutos.
-4. Ejecuta en un dispositivo o emulador (API 24+).
+4. Ejecuta en un dispositivo o emulador (Android 7.0+ / API 24+). Optimizado para Android 17.
 
 ## Agregar más proveedores a la lista incluida
 

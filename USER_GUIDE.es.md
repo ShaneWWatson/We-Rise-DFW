@@ -134,6 +134,12 @@ Eso es todo. Ningún dato de ubicación se escribe en el almacenamiento del tel�
 
 ## Situaciones comunes y soluciones
 
+**Teléfonos compatibles**
+
+- Funciona en cualquier teléfono con **Android 7.0 (Nougat)** o superior.
+- Totalmente compatible con las últimas funciones de **Android 17**, incluyendo gestos de retroceso
+  predictivo y visualización de borde a borde.
+
 **"No se pudo obtener la ubicación"**
 - Asegúrate de que la Ubicación esté activada en el panel de ajustes rápidos del teléfono.
 - Asegúrate de que la aplicación tenga permiso de ubicación. Abre **Ajustes → Aplicaciones → We Rise DFW → Permisos → Ubicación**, y elige **Permitir solo mientras se usa la aplicación**.

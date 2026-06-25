@@ -45,7 +45,7 @@
 ## التقنيات المستخدمة
 
 - Kotlin · AndroidX · واجهات XML التقليدية (متعمَّد — يحافظ على صغر حجم التطبيق ووضوح الشيفرة)
-- الحدّ الأدنى من SDK: 24 ‏(Android 7.0) · هدف SDK: 34
+- الحدّ الأدنى من SDK: 24 ‏(Android 7.0) · هدف SDK: 37 (Android 17)
 - ‏[OSMDroid](https://github.com/osmdroid/osmdroid) — لعرض الخريطة، بدون مفتاح API
 - ‏[Room](https://developer.android.com/training/data-storage/room) — قاعدة بيانات تخزين محلية
 - ‏`LocationManager` الخاص بالنظام — قراءة موقع لمرة واحدة، دون الاعتماد على Google Play Services في
@@ -63,7 +63,7 @@
    شغّل **File → Sync Project with Gradle Files**، أو من سطر الأوامر في جذر المشروع شغّل الأمر
    `gradle wrapper` مرة واحدة.
 3. اترك Gradle يكمل المزامنة. التزامن الأول يحمّل التبعيات وقد يستغرق دقائق.
-4. شغّل التطبيق على جهاز أو محاكٍ يعمل بنظام Android 7.0 (API 24) فأعلى.
+4. شغّل التطبيق على جهاز أو محاكٍ يعمل بنظام Android 7.0 (API 24) فأعلى. مُحسَّن لنظام Android 17.
 
 ## إضافة المزيد من المزوّدين إلى القائمة المرفقة
 
