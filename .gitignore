@@ -10,4 +10,4 @@
 local.properties
 *.apk
 *.ap_
-gradle/wrapper/gradle-wrapper.jar
+# gradle/wrapper/gradle-wrapper.jar
