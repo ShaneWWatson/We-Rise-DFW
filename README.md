@@ -3,8 +3,7 @@
 > **Translations:
 ** [English](README.md) · [Español](README.es.md) · [العربية](README.ar.md) · [中文](README.zh.md)
 
-An open-source Android app for the Dallas / Fort Worth area that surfaces nearby **food**, *
-*clothing**, and **shelter** providers based on the user's current location. Built by **We Rise DFW
+An open-source Android app for the Dallas / Fort Worth area that surfaces nearby **food**, **clothing**, and **shelter** providers based on the user's current location. Built by **We Rise DFW
 ** (Shane W. Watson) and offered freely under the MIT License — see [LICENSE](LICENSE).
 
 ## Why
